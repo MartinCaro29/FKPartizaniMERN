@@ -1,0 +1,205 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: 'Partizoni';
+  src: url('./ManchesterUnited24-25Tipografstore.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('./Cinzel-Regular.otf') format('opentype');
+}
+
+#basic-nav-dropdown{
+  font-size:1.2rem;
+  color:white;
+ 
+}
+
+#basic-nav-dropdown > *{
+  background-color:rgb(222, 21, 21)
+}
+
+.carousel-img {
+  height: 700px;                    
+  object-fit: cover; 
+  
+}
+
+.title-before-carousel{
+  user-select:none;
+  color: white;
+  font-family:'Cinzel';
+  width:90%;
+  text-align: center;
+  margin-bottom: 20px;
+  position:absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index:1;
+  pointer-events: none;
+}
+
+.carousel-item {
+  position: relative;
+}
+
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-item img {
+  position: relative;
+  z-index: 0;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  z-index: 3; 
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px; 
+  height: 40px;     
+  padding: 0;
+  border: 2px solid white; 
+  border-radius: 50%;
+  font-size: 1.5rem; 
+  color: white;
+  text-decoration: none;
+  user-select:none;
+}
+
+
+
+.social-icon:hover {
+  background-color:rgb(255, 255, 255);
+  color:rgb(229, 0, 0);
+  transition:0.5s ease
+}
+
+
+
+
+
+
+.container-fluid{
+  box-sizing:content-box
+}
+
+@media screen and (min-width:991px) and (max-width:1050px){
+  .social-icon {
+    font-size:1rem;
+    width:25px;
+    height:25px
+}
+}
+
+@media screen and (min-width:991px) and (max-width:1002px){
+  .navbar-brand-text{
+    font-size:2.4rem;
+  
+}
+}
+
+
+
+div.dropdown-menu.show {
+    background-color: #c80000;
+    align-items: center;
+  }
+
+  
+  a.dropdown-item {
+    color: #ffffff;   
+  }
+
+  .dropdown-menu a {
+    color: white; 
+    text-decoration: none; 
+    transition: 0.3s ease;
+  }
+  
+  .dropdown-menu a:focus, 
+  .dropdown-menu a:hover,
+  .dropdown-menu a:active {
+    color: rgb(55, 55, 55); 
+    background-color: rgb(255, 255, 186); 
+    outline: none;
+    transition: 0.5s ease
+  }
+
+  .navbar-toggler{
+      margin-right:10px;
+  }
+ 
+@media screen and (max-width: 991px) {
+    .navbar-nav {
+        background-image: linear-gradient(90deg, rgba(254, 0, 0, 1) 0%, rgba(208, 0, 0, 1) 100%);
+       padding:10px !important;
+       margin:0;
+       border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+    
+    }
+
+    
+
+    a.dropdown-item{
+        text-align:center;
+    }
+
+    div.container-fluid{
+        padding:0;
+    }
+
+    .social-container{
+        display: flex;
+        justify-content: center;
+        margin-top:10px;
+    }
+    
+    .nav-link:hover{
+      background-color:rgb(167, 15, 15);
+      transition: 0.5s ease;
+    }
+}
+
+
+
+@media screen and (max-width: 534px) {
+    
+    .navbar-brand-text {
+        display: none;
+        pointer-events: none;
+    }
+
+.container-fluid{
+      display:flex;
+      justify-content:center !important;
+    }
+   
+}
