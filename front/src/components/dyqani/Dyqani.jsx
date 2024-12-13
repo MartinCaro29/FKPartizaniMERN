@@ -85,7 +85,7 @@ const Dyqani = () => {
        </Col>
 
        <Col md={8} xs={12}>
-        <Produktet category={currentCategory}/>
+       
        </Col> 
      </Row>  
        
