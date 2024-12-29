@@ -6,6 +6,7 @@ import Img3 from "../../img/partizanicarousel3.jpg";
 import Img4 from "../../img/partizanicarousel4.jpg";
 import Img5 from "../../img/partizanicarousel5.jpg";
 import '../../index.css'
+import './karuseli.css'
 
 
 
@@ -42,6 +43,8 @@ function Karuseli() {
               alt={`Slide ${index + 1}`}
               src={img}
               className="d-block w-100 carousel-img"
+
+              style={{padding:0}}
             />
           </Carousel.Item>
         ))}

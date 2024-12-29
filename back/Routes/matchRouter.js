@@ -9,6 +9,13 @@ app.use(express.json());
 app.post("/addMatch", async (req, res) => {
   try {
     let newMatch = new Match(req.body);
+    if (
+      Number(newMatch.homegoals) < 0 ||
+      Number(newMatch.awaygoals) < 0 ||
+      !Number.isInteger(Number(newMatch.homegoals)) ||
+      !Number.isInteger(Number(newMatch.awaygoals))
+    ) return res.status(400).send("Invalid goal number");
+    
     await newMatch.save();
     res.status(200).send(newMatch);
   } catch (err) {
@@ -29,6 +36,22 @@ app.get("/getAllMatches", async (req, res) => {
     console.log("Error get: " + err)
     res.status(500).send("Error get: " + err);
     }
+});
+
+app.get("/getMatch/:id", async (req, res) => {
+  try {
+    const matchId = req.params.id;
+    const match = await Match.findById(matchId);
+
+    if (!match) {
+      return res.status(404).send("match not found");
+    }
+
+    res.status(200).send(match); 
+  } catch (err) {
+    console.log("Error getmatch: " + err);
+    res.status(500).send("Error getmatch: " + err); 
+  }
 });
 
 app.get("/latestMatches", async (req, res) => {

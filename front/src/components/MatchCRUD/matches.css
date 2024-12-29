@@ -1,0 +1,13 @@
+.match-box-crud{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    text-wrap:nowrap;
+    padding:7px 0;
+    margin-bottom:13px !important;
+    background:linear-gradient(90deg, rgba(237,237,237,1) 0%, rgba(232,232,232,1) 100%);
+  }
+  
+  .match-box-crud>*{
+    user-select:none
+  }

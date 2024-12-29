@@ -45,6 +45,10 @@ const storage = multer.diskStorage({
 
         const { name, category, description, price } = req.body;
 
+        if (!name || !category || !description || !price || !req.file) {
+            return res.status(400).send("Missing required fields");
+          }
+
         const slug = await generateSlug(name);
 
         let newProduct = new Product({
@@ -99,7 +103,7 @@ app.patch("/updateProduct/:id", upload.single('image'), async (req, res) => {
     if (req.file) {
     itemInfo.image = req.file.filename;
     }
-    const itemUpdated = await itemModel.findByIdAndUpdate(
+    const itemUpdated = await Product.findByIdAndUpdate(
     {_id: itemId},
     {$set: itemInfo},
     {new: true}
@@ -115,8 +119,8 @@ app.patch("/updateProduct/:id", upload.single('image'), async (req, res) => {
    
     app.delete("/deleteProduct/:id", async (req, res) => {
     try {
-    const itemId = req.params.id;
-    await itemModel.deleteOne({_id: itemId });
+    const productId = req.params.id;
+    await Product.deleteOne({ _id: productId });
     console.log("Item Deleted");
     res.status(200).send("Item Deleted");
     } catch (err) {

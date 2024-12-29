@@ -24,13 +24,13 @@ function Navigation() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto" style={{ gap: '15px' }} >
-            <Nav.Link style={{ fontSize: '1.2rem', color: 'white' }} href="/">Kreu</Nav.Link>
+            <Nav.Link style={{ fontSize: '1.2rem', color: 'white' }} href="#top">Kreu</Nav.Link>
 
             <NavDropdown title="Ekipi" id="basic-nav-dropdown">
               <NavDropdown.Item href="/aboutus">Kush jemi ne</NavDropdown.Item>
               <NavDropdown.Item href="/historia">Historia</NavDropdown.Item>
               <NavDropdown.Item href="/ndeshjet">Ndeshjet</NavDropdown.Item>
-              <NavDropdown.Item href="/lojtaretdhestafi">Lojtaret dhe Stafi</NavDropdown.Item>
+              <NavDropdown.Item href="/lojtaret">Lojtaret</NavDropdown.Item>
               
             </NavDropdown>
 

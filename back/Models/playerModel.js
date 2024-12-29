@@ -25,7 +25,7 @@ let playerSchema = new mongoose.Schema({
   foot: {
     type: String,
     require: true,
-    enum: ['E majta', 'E djathta', 'Te dyja']
+    enum: ['E majta', 'E djathta', 'Te dyja', 'Null']
   },
 });
 

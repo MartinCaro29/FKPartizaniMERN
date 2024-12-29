@@ -39,7 +39,7 @@ app.use(cors(
     let contactRouter = require("./routes/contactRouter");
     let playerRouter = require("./routes/playerRouter");
     let productRouter = require("./routes/productRouter");
-app.use("/Images", express.static(path.join(__dirname, "/Images")));
+app.use('/Images', express.static(path.join(__dirname, 'Images')));
 app.use(matchRouter);
 app.use(standingsRouter);
 app.use(contactRouter);

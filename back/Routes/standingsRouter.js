@@ -8,21 +8,14 @@ const mongoose = require("mongoose");
 app.post("/addTeam", async (req, res) => {
   try {
 
-    const teamLimit = 10;  
-    
-    
-    const teamCount = await Team.countDocuments();
-
-    
-    if (teamCount >= teamLimit) {
-      
-      return res.status(400).send("Cannot add more teams, the limit has been reached.");
-    }
-
-
     let newTeam = new Team(req.body);
+    if (
+      Number(newTeam.points) < 0 ||
+      !Number.isInteger(Number(newTeam.points))
+    ) return res.status(400).send("Invalid points number");
     await newTeam.save();
     res.status(200).send(newTeam);
+    
   } catch (err) {
     res.status(500).send("Error add:" + err);
     console.log("Error add:" + err);
@@ -41,6 +34,22 @@ app.get("/getAllTeams", async (req, res) => {
     console.log("Error get: " + err)
     res.status(500).send("Error get: " + err);
     }
+});
+
+app.get("/getTeam/:id", async (req, res) => {
+  try {
+    const teamId = req.params.id;
+    const team = await Team.findById(teamId);
+
+    if (!team) {
+      return res.status(404).send("Team not found");
+    }
+
+    res.status(200).send(team); 
+  } catch (err) {
+    console.log("Error getTeam: " + err);
+    res.status(500).send("Error getTeam: " + err); 
+  }
 });
 
 
@@ -69,18 +78,27 @@ app.get("/getAllTeams", async (req, res) => {
     });
 
     app.delete("/deleteTeam/:id", async (req, res) => {
-        try {
-        
+      try {
         const teamId = req.params.id;
-        
-        await Team.deleteOne({_id: teamId });
+    
        
-        console.log("Team Deleted");
-        res.status(200).send("Team Deleted");
-        } catch (err) {
-       
-        console.log("Team not deleted " + err);
-        res.status(500).send("Team not deleted " + err); }
+        if (!teamId || !mongoose.Types.ObjectId.isValid(teamId)) {
+          return res.status(400).send("Invalid team ID.");
+        }
+    
+        const result = await Team.deleteOne({ _id: teamId });
+    
+        if (result.deletedCount === 0) {
+          return res.status(404).send("Team not found.");
+        }
+    
+        console.log("Team deleted");
+        res.status(200).send("Team deleted successfully.");
+      } catch (err) {
+        console.log("Team not deleted:", err);
+        res.status(500).send("Team not deleted: " + err.message);
+      }
     });
+    
     
 module.exports = app;

@@ -8,6 +8,7 @@ const Ndeshjet = () => {
   const [competition, setCompetition] = useState("");
   
   const [place, setPlace] = useState("");
+  const competitions = new Set();
   useEffect(() => {
     axios
     .get("http://localhost:5000/getAllMatches")
@@ -19,45 +20,49 @@ const Ndeshjet = () => {
     });
 }, []);
 
+const allCompetitions = () => {  
+  
+  competitions.add("Abissnet Superiore");
+  competitions.add("Kupa e Shqiperise");
+
+  for (let i = 0; i < matches.length; i++) {
+    
+    if (!competitions.has(matches[i].competition) && matches[i].competition !== "Miqesore"
+    && matches[i].competition !== "Abissnet Superiore"
+    && matches[i].competition !== "Kupa e Shqiperise") {
+      competitions.add(matches[i].competition); 
+    }
+  }
+
+  competitions.add("Miqesore");
+  
+}
+  
 const handleAll = () =>{
   setCompetition("");
   setPlace("");
 };
 const filteredMatches = matches.filter((match) => {
-  if(place === 'Shtepi'){
-    let isHome = match.hometeam === "Partizani"
-  if (competition === "Abissnet Superiore")
-    return match.competition === "Abissnet Superiore" && isHome;
-  if (competition === "Kupa e Shqiperise")
-    return match.type === "Kupa e Shqiperise" && isHome;
-  if (competition === "Miqesore") 
-    return match.type === "Miqesore" && isHome;
-    
-  return isHome}
+  const isHome = match.hometeam === "Partizani";
+  const isAway = match.awayteam === "Partizani";
 
-  if(place === "Transferte"){
-    let isAway = match.awayteam === "Partizani"
-  if (competition === "Abissnet Superiore")
-    return match.competition === "Abissnet Superiore" && isAway;
-  if (competition === "Kupa e Shqiperise")
-    return match.type === "Kupa e Shqiperise" && isAway;
-  if (competition === "Miqesore") 
-    return match.type === "Miqesore" && isAway;
-    
-  return isAway}
+  
+  if (place === "Shtepi" && !isHome) {
+    return false; 
+  }
+  if (place === "Transferte" && !isAway) {
+    return false; 
+  }
 
+  
+  if (competition && match.competition !== competition) {
+    return false;
+  }
 
-  if (competition === "Abissnet Superiore")
-    return match.competition === "Abissnet Superiore";
-  if (competition === "Kupa e Shqiperise")
-    return match.type === "Kupa e Shqiperise";
-  if (competition === "Miqesore") 
-    return match.type === "Miqesore";
-
-  return true;
-
-
+  return true; 
 });
+
+allCompetitions();
 
   return (
     <Container className="my-4">
@@ -109,9 +114,10 @@ const filteredMatches = matches.filter((match) => {
 
       
     })}
-    <div style={{display:'flex', justifyContent:'space-around', height: (filteredMatches.length===0) ? '200px' : 'auto'}}>
-    <Dropdown>
-          <Dropdown.Toggle variant="danger" style={{marginTop:'4px'}} id="dropdown-basic">
+    <div style={{display:'flex', flexDirection:'column', height: (filteredMatches.length===0) ? '200px' : 'auto'}}>
+    {(ceiling < filteredMatches.length) && <Button variant='danger' style={{margin:"4px auto", width:'182px' }} onClick={() => {setCeiling(ceiling+15)}}>Ngarko me shume</Button>}
+    <Dropdown style={{userSelect:'none'}}>
+          <Dropdown.Toggle variant="light" style={{marginTop:'4px', border:'1px solid #cccccc'}} id="dropdown-basic">
             Filtro sipas: {(competition || place) ? 
     `${competition ? competition.charAt(0).toUpperCase() + competition.slice(1) : ''}${competition && place ? ' - ' : ''}${place ? place.charAt(0).toUpperCase() + place.slice(1) : ''}` 
     : 'Te gjitha'}
@@ -129,9 +135,9 @@ const filteredMatches = matches.filter((match) => {
           </Dropdown.Toggle>
           <Dropdown.Menu style={{backgroundColor:'#bbbbbb'}}>
             <Dropdown.Item style={{color:'#222222', textAlign:'left'}} onClick={() => setCompetition("")}>Te gjitha</Dropdown.Item>
-            <Dropdown.Item style={{color:'#222222', textAlign:'left'}} onClick={() => setCompetition("Abissnet Superiore")}>Abissnet Superiore</Dropdown.Item>
-            <Dropdown.Item style={{color:'#222222', textAlign:'left'}} onClick={() => setCompetition("Kupa e Shqiperise")}>Kupa e Shqiperise</Dropdown.Item>
-            <Dropdown.Item style={{color:'#222222', textAlign:'left'}} onClick={() => setCompetition("Miqesore")}>Miqesore</Dropdown.Item>
+            {[...competitions].map((competition, index)=> {
+                return <Dropdown.Item key={index} style={{color:'#222222', textAlign:'left'}} onClick={() => setCompetition(`${competition}`)}>{competition}</Dropdown.Item>
+            })}        
           </Dropdown.Menu>
         </Dropdown>
             
@@ -149,7 +155,7 @@ const filteredMatches = matches.filter((match) => {
             
           </Dropdown.Menu>
         </Dropdown>
-    {(ceiling < filteredMatches.length) && <Button variant='danger' style={{marginTop:'4px'}} onClick={() => {setCeiling(ceiling+15)}}>Ngarko me shume</Button>}
+    
     </div>
   </Container>
 
