@@ -39,12 +39,14 @@ app.use(cors(
     let contactRouter = require("./routes/contactRouter");
     let playerRouter = require("./routes/playerRouter");
     let productRouter = require("./routes/productRouter");
+    let orderRouter = require("./routes/orderRouter");
 app.use('/Images', express.static(path.join(__dirname, 'Images')));
 app.use(matchRouter);
 app.use(standingsRouter);
 app.use(contactRouter);
 app.use(playerRouter);
 app.use(productRouter);
+app.use(orderRouter);
 app.listen(5000, () => {
 console.log('Server Created!')
 })

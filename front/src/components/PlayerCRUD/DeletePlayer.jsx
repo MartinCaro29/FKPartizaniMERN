@@ -3,7 +3,7 @@ import LojtarCardAdmin from "./LojtarCardAdmin";
 import axios from "axios"; 
 import { Row, Col } from "react-bootstrap"; 
 
-const Lojtaret = () => {
+const DeletePlayer = () => {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -84,4 +84,4 @@ const Lojtaret = () => {
   );
 };
 
-export default Lojtaret;
+export default DeletePlayer;

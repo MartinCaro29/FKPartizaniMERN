@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import Karuseli from './components/homepage/Karuseli';
 import Kreu from './components/homepage/Kreu';
 import Contact from './components/Contact';
 import AllMatches from './components/ndeshjet/AllMatches';
@@ -18,6 +17,9 @@ import DeleteMatch from './components/MatchCRUD/DeleteMatch';
 import UpdateMatch from './components/MatchCRUD/UpdateMatch';
 import CreatePlayer from './components/PlayerCRUD/CreatePlayer';
 import DeletePlayer from './components/PlayerCRUD/DeletePlayer';
+import AllContacts from './components/AllContacts';
+import CreateProduct from './components/ProductCRUD/CreateProduct';
+import DeleteProduct from './components/ProductCRUD/DeleteProduct';
 function App() {
   const [sidebarFixed, setSidebarFixed] = useState(true); 
   const footerNavRef = useRef(null); 
@@ -51,6 +53,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Kreu />} />
         <Route path="/kontakt" element={<Contact />} />
+        <Route path="/getContacts" element={<AllContacts/>}/>
         <Route path="/ndeshjet" element={<AllMatches footerNavRef={footerNavRef}/>} />
         <Route path="/dyqani" element={<Dyqani footerNavRef={footerNavRef} />} />
         <Route path="/dyqani/:slug" element={<BlejProdukt/>} />
@@ -62,6 +65,8 @@ function App() {
         <Route path="/updateMatch/:id" element={<UpdateMatch/>}/>
         <Route path="/addPlayer" element={<CreatePlayer/>}/>
         <Route path="/deletePlayer" element={<DeletePlayer/>}/>
+        <Route path="/addProduct" element={<CreateProduct/>}/>
+        <Route path="/deleteProduct" element={<DeleteProduct/>}/>
         <Route path="/lojtaret" element={<Lojtaret/>}/>
 
       </Routes>

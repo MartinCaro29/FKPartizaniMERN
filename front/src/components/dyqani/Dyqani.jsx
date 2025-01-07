@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Row, Col, Container, Button } from 'react-bootstrap';
+import { Row, Col, Container, Button, Dropdown } from 'react-bootstrap';
 import Produktet from './Produktet';
 import axios from 'axios';
+import "./dyqani.css";
 
 const Dyqani = ({ footerNavRef }) => {
   const [products, setProducts] = useState([]);
@@ -70,18 +71,17 @@ const Dyqani = ({ footerNavRef }) => {
     <div style={{ overflow: 'hidden' }}>
       <Row>
         <Col
-          md={4}
+          md={3}
           xs={12}
+          className="category-column"
           style={{
-            backgroundColor: 'rgb(248, 249, 250)',
-            display: isMobile ? 'none' : 'flex',
+        
+            display: isMobile ? 'none' : sidebarFixed ? 'flex' : 'none',
             position: sidebarFixed ? 'fixed' : '',
-            display: sidebarFixed ? '' : 'none',
             opacity: sidebarFixed ? 1 : 0,
-            left: 0,
-            height: '100%',
-            padding: 0,
-            zIndex: 1,
+            
+            
+
           }}
         >
           <div>
@@ -89,25 +89,10 @@ const Dyqani = ({ footerNavRef }) => {
               <p className="text-center">Po ngarkohen kategorite...</p>
             ) : (
               <Container
-                className="flex-column"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  alignItems: 'center',
-                  padding: '15px',
-                  backgroundColor: '#f8f9fa',
-                  userSelect: 'none',
-                }}
+                className="flex-column categories-list"
+                
               >
-                <h1
-                  style={{
-                    fontSize: '3rem',
-                    fontWeight: 'bold',
-                    fontFamily: 'cinzel',
-                    marginBottom: '20px',
-                    color: 'rgb(188, 0, 0)',
-                  }}
-                >
+                <h1 className="dyqani-header">
                   Dyqani
                 </h1>
 
@@ -120,18 +105,12 @@ const Dyqani = ({ footerNavRef }) => {
                       <Button
                         key={index}
                         href="#top"
+                        className="category-button"
                         onClick={() => {
                           setCurrentCategory(category);
                         }}
                         variant="light"
-                        style={{
-                          fontSize: '1.3rem',
-                          width: '80%',
-                          height: '50px',
-                          fontFamily: 'cinzel',
-                          textAlign: 'left',
-                          marginBottom: '10px',
-                        }}
+                        
                       >
                         {category}
                       </Button>
@@ -141,17 +120,11 @@ const Dyqani = ({ footerNavRef }) => {
                   <Button
                     variant="light"
                     href="#top"
+                    className="category-button"
                     onClick={() => {
                       setCurrentCategory('Te gjitha');
                     }}
-                    style={{
-                      fontSize: '1.3rem',
-                      width: '80%',
-                      height: '50px',
-                      fontFamily: 'cinzel',
-                      textAlign: 'left',
-                      marginBottom: '10px',
-                    }}
+                    
                   >
                     Te gjitha
                   </Button>
@@ -161,7 +134,40 @@ const Dyqani = ({ footerNavRef }) => {
           </div>
         </Col>
 
-        <Col md={8} xs={12} style={{ marginLeft: isMobile ? '0' : '33.33%', padding: '20px' }}>
+        <Col md={8} xs={12} style={{ marginLeft: isMobile ? '0' : '30%', padding: '20px' }}>
+          {isMobile && (
+            <div className="section-header">Dyqani</div>
+          )}
+
+          {isMobile && categories.length > 0 && (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+            <Dropdown style={{ width: '80%', marginBottom: '20px' }}>
+              <Dropdown.Toggle variant="light" style={{ fontSize: '1.3rem', width: '100%' }}>
+                Zgjidh Kategorine
+              </Dropdown.Toggle>
+          
+              <Dropdown.Menu className="mobile-products-dropdown-menu">
+                {categories.map((category, index) => (
+                  <Dropdown.Item
+                    key={index}
+                    className="dyqani-dropdown-item"
+                    onClick={() => setCurrentCategory(category)}
+                    style={{ padding: '10px', fontSize: '1.2rem', color:'black' }} // Customize individual item padding & font size
+                  >
+                    {category}
+                  </Dropdown.Item>
+                ))}
+                <Dropdown.Item
+                  onClick={() => setCurrentCategory('Te gjitha')}
+                  style={{ padding: '10px', fontSize: '1.2rem', color:'black' }} // Customize this item as well
+                >
+                  Te gjitha
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+          )}
+
           <Produktet category={currentCategory} products={products} />
         </Col>
       </Row>

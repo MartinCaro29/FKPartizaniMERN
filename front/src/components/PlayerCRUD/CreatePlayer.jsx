@@ -20,7 +20,7 @@ const CreatePlayer = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
 
   // State for validation error messages
-  const [error, setError] = useState('');
+  
   const [message, setMessage] = useState({ text: "", color: "" });
 
   // Handle input changes
@@ -63,7 +63,7 @@ const CreatePlayer = () => {
     }
 
     // Clear any previous error messages
-    setError('');
+    
     setMessage({ text: "", color: "" });
 
     // Create FormData object
@@ -100,13 +100,13 @@ const CreatePlayer = () => {
     <Container className="my-5">
       <Row>
         <Col>
-          <h1>Create Player</h1>
+          <h1>Krijo lojtar</h1>
           {/* Show error message if any validation fails */}
           
           <Form onSubmit={handleSubmit} encType="multipart/form-data">
             {/* Player Name Input */}
             <Form.Group className="mb-3" controlId="name">
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Emri</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
@@ -118,7 +118,7 @@ const CreatePlayer = () => {
 
             {/* Player Surname Input */}
             <Form.Group className="mb-3" controlId="surname">
-              <Form.Label>Surname</Form.Label>
+              <Form.Label>Mbiemri</Form.Label>
               <Form.Control
                 type="text"
                 name="surname"
@@ -130,7 +130,7 @@ const CreatePlayer = () => {
 
             {/* Shirt Number Input */}
             <Form.Group className="mb-3" controlId="shirtNumber">
-              <Form.Label>Shirt Number</Form.Label>
+              <Form.Label>Numri</Form.Label>
               <Form.Control
                 type="number"
                 name="shirtNumber"
@@ -142,14 +142,14 @@ const CreatePlayer = () => {
 
             {/* Player Position Selection */}
             <Form.Group className="mb-3" controlId="position">
-              <Form.Label>Position</Form.Label>
+              <Form.Label>Pozicioni</Form.Label>
               <Form.Control
                 as="select"
                 name="position"
                 value={newPlayer.position}
                 onChange={handleChange}
               >
-                <option value="">Select Position</option>
+                <option value="" select disabled>Select Position</option>
                 <option value="Sulmues">Sulmues</option>
                 <option value="Mesfushor">Mesfushor</option>
                 <option value="Mbrojtes">Mbrojtes</option>
@@ -159,7 +159,7 @@ const CreatePlayer = () => {
 
             {/* Foot Preference Selection */}
             <Form.Group className="mb-3" controlId="foot">
-              <Form.Label>Foot</Form.Label>
+              <Form.Label>Kemba</Form.Label>
               <Form.Control
                 as="select"
                 name="foot"
@@ -177,7 +177,7 @@ const CreatePlayer = () => {
 
             {/* Player Image Upload */}
             <Form.Group className="mb-3" controlId="image">
-              <Form.Label>Image</Form.Label>
+              <Form.Label>Imazhi</Form.Label>
               <Form.Control
                 type="file"
                 accept=".jpeg, .png, .jpg"
@@ -190,14 +190,14 @@ const CreatePlayer = () => {
             {message.text && <p style={{ color: message.color }}>{message.text}</p>}
 
             <Button variant="primary" type="submit">
-              Submit
+              Krijo
             </Button>
           </Form>
         </Col>
 
         {/* Image Preview */}
         <Col>
-          <h1>Preview Image</h1>
+          <h1>Imazhi i zgjedhur</h1>
           {uploadedImage && (
             <Image
               src={uploadedImage}
