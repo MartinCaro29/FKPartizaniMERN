@@ -2,12 +2,12 @@ import React from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 
 const ProduktCardAdmin = (props) => {
-  const { product, deleteProduct } = props; // Destructure the product prop first
+  const { product, deleteProduct } = props; 
   
-  // Now, access product to create the update link
+
   const updateLink = `/updateProduct/${product._id}`;
 
-  // Fallback for missing image
+
   const imageUrl =`http://localhost:5000/Images/${product.image}`;
 
   return (

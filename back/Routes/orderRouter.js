@@ -5,24 +5,24 @@ const Order = require("../Models/orderModel");
 let app = express();
 app.use(express.json());
 
-// GET route to fetch all orders
+
 app.get("/getAllOrders", async (req, res) => {
   try {
     const orders = await Order.find({}).sort({ date: -1 });
     console.log(orders);
-    res.status(200).send(orders);  // Fixed the variable name from "contacts" to "orders"
+    res.status(200).send(orders);
   } catch (err) {
     console.log("Error get: " + err);
     res.status(500).send("Error get: " + err);
   }
 });
 
-// POST route to create a new order
+
 app.post("/order", async (req, res) => {
   try {
     const { name, shirtNumber, size, price, date } = req.body;
 
-    // Create a new order instance
+
     const newOrder = new Order({
       name,
       shirtNumber,
@@ -31,7 +31,7 @@ app.post("/order", async (req, res) => {
       date,
     });
 
-    // Save the order to the database
+
     await newOrder.save();
 
     res.status(201).send({ message: "Order placed successfully!", order: newOrder });

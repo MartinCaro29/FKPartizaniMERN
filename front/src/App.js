@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Kreu from './components/homepage/Kreu';
 import Contact from './components/Contact';
+import AboutUs from './components/AboutUs';
+import Historia from './components/Historia';
 import AllMatches from './components/ndeshjet/AllMatches';
 import Dyqani from './components/dyqani/Dyqani';
 import BlejProdukt from './components/dyqani/BlejProdukt';
@@ -68,6 +70,8 @@ function App() {
         <Route path="/addProduct" element={<CreateProduct/>}/>
         <Route path="/deleteProduct" element={<DeleteProduct/>}/>
         <Route path="/lojtaret" element={<Lojtaret/>}/>
+        <Route path="/aboutus" element={<AboutUs/>}/>
+        <Route path="/historia" element={<Historia/>}/>
 
       </Routes>
       <FooterNav ref={footerNavRef} />

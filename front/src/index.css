@@ -171,7 +171,7 @@ code {
 
 
 div.dropdown-menu.show {
-    background-color: #c80000;
+    background-color: #c80000 !important;
     align-items: center;
   }
 

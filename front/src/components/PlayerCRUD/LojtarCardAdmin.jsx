@@ -16,15 +16,15 @@ const LojtarCardAdmin = (props) => {
     return null;
   };
 
-  // Safely check if player and kemba are available
+
   const footed = getPlayerFoot(player.foot);
 
-  // If the player object is missing or doesn't contain necessary fields, render a fallback UI
+
   if (!player) {
     return <div>No player data available</div>;
   }
 
-  // Assuming your image is stored on the server under '/images' path
+
   const imageUrl = `http://localhost:5000/images/${player.image}`;
 
   return (

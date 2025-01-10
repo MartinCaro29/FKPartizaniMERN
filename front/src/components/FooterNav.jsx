@@ -112,5 +112,5 @@ const FooterNav = forwardRef((props, ref) => {
   );
 });
 
-// Export the FooterNav component with forwardRef applied
+
 export default FooterNav;

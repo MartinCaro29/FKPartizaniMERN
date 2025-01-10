@@ -141,7 +141,7 @@ const Dyqani = ({ footerNavRef }) => {
 
           {isMobile && categories.length > 0 && (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-            <Dropdown style={{ width: '80%', marginBottom: '20px' }}>
+            <Dropdown className="dyqani-dropdown" style={{ width: '80%', marginBottom: '20px' }}>
               <Dropdown.Toggle variant="light" style={{ fontSize: '1.3rem', width: '100%' }}>
                 Zgjidh Kategorine
               </Dropdown.Toggle>

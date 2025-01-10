@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const CreatePlayer = () => {
   
 
-  // State to store player details
+
   const [newPlayer, setNewPlayer] = useState({
     name: '',
     surname: '',
@@ -16,74 +16,74 @@ const CreatePlayer = () => {
     foot: ''
   });
 
-  // State for image preview
+
   const [uploadedImage, setUploadedImage] = useState(null);
 
-  // State for validation error messages
+
   
   const [message, setMessage] = useState({ text: "", color: "" });
 
-  // Handle input changes
+
   const handleChange = (e) => {
     setNewPlayer({ ...newPlayer, [e.target.name]: e.target.value });
   };
 
-  // Handle file upload for player image
+
   const handleImage = (e) => {
     setNewPlayer({ ...newPlayer, image: e.target.files[0] });
     setUploadedImage(URL.createObjectURL(e.target.files[0]));
   };
 
-  // Validation function for player number (shirt number)
+
   const validateShirtNumber = (shirtNumber) => {
     const numberRegex = /^[0-9]+$/;  // Only digits allowed
     return numberRegex.test(shirtNumber) && shirtNumber > 0 && shirtNumber <= 99;
   };
 
-  // Validation function for player name
+
   const validateName = (name) => {
     const nameRegex = /^[çÇëËA-Za-z\s-]+$/;  // Only letters, spaces, and hyphens allowed
     return nameRegex.test(name);
   };
 
-  // Handle form submission
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate player number (shirt number)
+
     if (!validateShirtNumber(newPlayer.shirtNumber)) {
       setMessage({ text: "Vlera invalide per numrin!", color: "red" });
       return;
     }
 
-    // Validate name and surname (only letters, spaces, and hyphens)
+
     if (!validateName(newPlayer.name) || !validateName(newPlayer.surname)) {
       setMessage({ text: "Vlera invalide per emrin ose mbiemrin!", color: "red" });
       return;
     }
 
-    // Clear any previous error messages
+
     
     setMessage({ text: "", color: "" });
 
-    // Create FormData object
+
     const formData = new FormData();
     Object.entries(newPlayer).forEach(([key, value]) => {
       formData.append(key, value);
     });
 
     try {
-      // Make the POST request to the backend
+
       await axios.post("http://localhost:5000/addPlayer", formData)
         .then((res) => {
           console.log(res.data);
-          // After creating, show success message
+
           setMessage({ text: "Lojtari u shtua me sukses!", color: "green" });
-          // Optionally navigate to another page after successful creation
-          // navigate("/players");
+
+
         })
         .catch((err) => {
-          // If there's an error, it could be due to duplication or other issues
+
           if (err.response && err.response.data) {
             setMessage({ text:"Njera nga te dhenat ekziston ne databaze! Lojtari nuk u krijua!", color: "red" });
           } else {

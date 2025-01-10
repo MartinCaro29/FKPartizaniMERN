@@ -9,8 +9,8 @@
     position:relative
 }
 
-div.dropdown-menu.show {
-    background-color: #f8f9fa;
+.dyqani-dropdown > div.dropdown-menu.show {
+    background-color: #f8f9fa !important;
     align-items: center;
 }
 .category-button.btn.btn-light {
