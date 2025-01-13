@@ -19,9 +19,10 @@ import DeleteMatch from './components/MatchCRUD/DeleteMatch';
 import UpdateMatch from './components/MatchCRUD/UpdateMatch';
 import CreatePlayer from './components/PlayerCRUD/CreatePlayer';
 import DeletePlayer from './components/PlayerCRUD/DeletePlayer';
-import AllContacts from './components/AllContacts';
 import CreateProduct from './components/ProductCRUD/CreateProduct';
 import DeleteProduct from './components/ProductCRUD/DeleteProduct';
+import UpdateProduct from './components/ProductCRUD/UpdateProduct';
+import AdminPage from './components/admin/AdminPage';
 function App() {
   const [sidebarFixed, setSidebarFixed] = useState(true); 
   const footerNavRef = useRef(null); 
@@ -55,7 +56,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Kreu />} />
         <Route path="/kontakt" element={<Contact />} />
-        <Route path="/getContacts" element={<AllContacts/>}/>
         <Route path="/ndeshjet" element={<AllMatches footerNavRef={footerNavRef}/>} />
         <Route path="/dyqani" element={<Dyqani footerNavRef={footerNavRef} />} />
         <Route path="/dyqani/:slug" element={<BlejProdukt/>} />
@@ -69,9 +69,12 @@ function App() {
         <Route path="/deletePlayer" element={<DeletePlayer/>}/>
         <Route path="/addProduct" element={<CreateProduct/>}/>
         <Route path="/deleteProduct" element={<DeleteProduct/>}/>
+        <Route path="/updateProduct/:id" element={<UpdateProduct/>}/>
         <Route path="/lojtaret" element={<Lojtaret/>}/>
         <Route path="/aboutus" element={<AboutUs/>}/>
         <Route path="/historia" element={<Historia/>}/>
+        <Route path="/admin" element={<AdminPage/>}/>
+        
 
       </Routes>
       <FooterNav ref={footerNavRef} />

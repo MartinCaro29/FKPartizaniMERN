@@ -15,7 +15,7 @@ const AllContacts = () => {
         setContacts(response.data);
         setLoading(false);
       } catch (err) {
-        setError("Error fetching contacts");
+        setError("Gabim ne marrjen e mesazheve");
         setLoading(false);
         console.log("Error fetching contacts:", err);
       }
@@ -24,12 +24,12 @@ const AllContacts = () => {
     fetchContacts();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>Po ngarkohen...</div>;
   if (error) return <div>{error}</div>;
 
   return (
     <Container>
-      <div className="section-header" style={{marginTop:'25px'}}>Mesazhet</div>
+      <h5 className="card-title text-danger fw-bold" style={{marginTop:'25px'}}>Mesazhet</h5>
       <Table striped bordered hover>
         <thead>
           <tr>

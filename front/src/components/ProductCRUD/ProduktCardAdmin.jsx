@@ -34,7 +34,7 @@ const ProduktCardAdmin = (props) => {
               variant="danger"
               size="sm"
               onClick={() => deleteProduct(product._id)} 
-              style={{width:'100%' }} // Adding space between buttons
+              style={{width:'100%' }} 
             >
               Fshi
             </Button>

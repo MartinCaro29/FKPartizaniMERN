@@ -7,7 +7,7 @@ import LeftFooted from '../../img/left-footed.png';
 import BothFooted from '../../img/both-footed.png';
 
 const LojtarCardAdmin = (props) => {
-  const { player, deletePlayer } = props; // Destructure the props to get player and deletePlayer
+  const { player, deletePlayer } = props;
 
   const getPlayerFoot = (kemba) => {
     if (kemba === 'E majta') return LeftFooted;
@@ -48,14 +48,12 @@ const LojtarCardAdmin = (props) => {
           <div className="player-last-name">{player.surname.toUpperCase()}</div>
         </div>
         <div className="player-admin-buttons">
-          <Button variant="primary" size="sm" href={`/updatePlayer/${player._id}`}>
-            Update
-          </Button>
+          
           <Button
             variant="danger"
             size="sm"
             className="ml-1"
-            onClick={() => deletePlayer(player._id)} // Call deletePlayer from props
+            onClick={() => deletePlayer(player._id)}
           >
             Fshi
           </Button>
